@@ -81,5 +81,3 @@ npm install
 <h2>🙌 Contributions</h2>
 <p>Pull requests are welcome! If you have ideas, feel free to open an issue or fork the repo and improve it.</p>
 
-<hr>
-<p align="center">Made with ❤️ by <a href="https://github.com/Riotcoke123">Riotcoke123</a></p>
