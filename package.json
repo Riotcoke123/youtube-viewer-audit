@@ -1,1 +1,23 @@
 
+{
+  "name": "youtube-viewer-audit",
+  "version": "1.0.0",
+  "description": "Detect and audit viewbot activity on YouTube live streams using viewer count and chat analysis.",
+  "main": "anti-viewbot.js",
+  "scripts": {
+    "start": "node anti-viewbot.js"
+  },
+  "author": "Riotcoke123",
+  "license": "GPL-3.0",
+  "keywords": [
+    "youtube",
+    "viewbot",
+    "livestream",
+    "chat",
+    "analytics",
+    "bot-detector"
+  ],
+  "dependencies": {
+    "googleapis": "^131.0.0"
+  }
+}
