@@ -1,3 +1,5 @@
+   <img src="https://github.com/user-attachments/assets/203d973f-364c-436c-99d0-7f3666bfe484" 
+         alt="YouTube Anti-Viewbot Detector" width="250" height="250">
 <h1 align="center">📺 YouTube Viewer Audit</h1>
 <p align="center">
   <b>Detect suspicious viewers on YouTube live streams</b><br>
