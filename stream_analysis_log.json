@@ -1,0 +1,74 @@
+[
+  {
+    "timestamp": "2025-04-14T18:36:46.471Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 373,
+    "chatUsers": 40,
+    "estimatedRealViewers": 40,
+    "estimatedBotViewers": 333,
+    "chatToViewerRatio": "0.11"
+  },
+  {
+    "timestamp": "2025-04-14T18:37:46.375Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 364,
+    "chatUsers": 39,
+    "estimatedRealViewers": 39,
+    "estimatedBotViewers": 325,
+    "chatToViewerRatio": "0.11"
+  },
+  {
+    "timestamp": "2025-04-14T18:38:46.307Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 368,
+    "chatUsers": 42,
+    "estimatedRealViewers": 42,
+    "estimatedBotViewers": 326,
+    "chatToViewerRatio": "0.11"
+  },
+  {
+    "timestamp": "2025-04-14T18:39:46.462Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 361,
+    "chatUsers": 42,
+    "estimatedRealViewers": 42,
+    "estimatedBotViewers": 319,
+    "chatToViewerRatio": "0.12"
+  },
+  {
+    "timestamp": "2025-04-14T18:40:46.178Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 369,
+    "chatUsers": 42,
+    "estimatedRealViewers": 42,
+    "estimatedBotViewers": 327,
+    "chatToViewerRatio": "0.11"
+  },
+  {
+    "timestamp": "2025-04-14T18:41:45.787Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 366,
+    "chatUsers": 42,
+    "estimatedRealViewers": 42,
+    "estimatedBotViewers": 324,
+    "chatToViewerRatio": "0.11"
+  },
+  {
+    "timestamp": "2025-04-14T18:42:46.359Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 366,
+    "chatUsers": 42,
+    "estimatedRealViewers": 42,
+    "estimatedBotViewers": 324,
+    "chatToViewerRatio": "0.11"
+  },
+  {
+    "timestamp": "2025-04-14T18:43:46.339Z",
+    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
+    "viewers": 353,
+    "chatUsers": 40,
+    "estimatedRealViewers": 40,
+    "estimatedBotViewers": 313,
+    "chatToViewerRatio": "0.11"
+  }
+]
