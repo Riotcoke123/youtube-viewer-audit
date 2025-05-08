@@ -5,7 +5,6 @@
 </head>
 <body>
   <h1>YouTube Viewer Audit</h1>
-
   <p>This Node.js script audits live viewer counts on a specified YouTube livestream to estimate how many viewers are real versus potentially bots, using live chat engagement heuristics.</p>
 
   <h2>🔧 Features</h2>
@@ -31,19 +30,23 @@
   <pre><code>git clone https://github.com/Riotcoke123/youtube-viewer-audit
 cd youtube-viewer-audit
 npm install
-# Replace YOUR_API_KEY in the script with your own
+
+# Create a .env file in the root directory with the following content:
+API_KEY=your_youtube_api_key
+
+# Replace CHANNEL_ID and other settings in the script or .env as needed
 node audit.js
 </code></pre>
 
   <h2>⚙️ Configuration</h2>
-  <p>Edit the top of the script to configure:</p>
+  <p>Edit the top of the script or use a <code>.env</code> file to configure:</p>
   <ul>
-    <li><code>API_KEY</code>: Your YouTube API key</li>
+    <li><code>API_KEY</code>: Your YouTube API key (loaded securely from <code>.env</code>)</li>
     <li><code>CHANNEL_ID</code>: The channel to monitor</li>
     <li><code>CHAT_COLLECTION_DURATION_SEC</code>: Duration of chat monitoring per cycle</li>
     <li><code>BOT_ESTIMATION_INTERVAL_MS</code>: How often the script runs analysis</li>
   </ul>
-  <p><strong>Note:</strong> It's highly recommended to load your API key from an environment variable or a secure config file in production to avoid exposing sensitive credentials.</p>
+  <p><strong>Note:</strong> It's highly recommended to use a <code>.env</code> file or a secure config system in production to avoid exposing sensitive credentials in your source code.</p>
 
   <h2>📈 Output</h2>
   <p>Logs are written to <code>stream_analysis_log.json</code> and include timestamps, viewer counts, chatter counts, and bot estimation ratios.</p>
