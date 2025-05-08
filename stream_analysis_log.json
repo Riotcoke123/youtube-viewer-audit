@@ -1,74 +1,32 @@
 [
   {
-    "timestamp": "2025-04-14T18:36:46.471Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 373,
-    "chatUsers": 40,
-    "estimatedRealViewers": 40,
-    "estimatedBotViewers": 333,
-    "chatToViewerRatio": "0.11"
+    "timestamp": "2025-05-08T02:42:03.419Z",
+    "channelId": "UCLleZKzwtLupGj6fXySbvuA",
+    "videoId": "iWBfA21fLKw",
+    "concurrentViewers": 378,
+    "uniqueChatterCount": 22,
+    "totalMessagesCollected": 72,
+    "averageMessagesPerChatter": 3.27,
+    "potentiallySuspiciousChatters": 0,
+    "estimatedRealViewers": 88,
+    "estimatedBotViewers": 290,
+    "rawChatToViewerRatio": 0.0582,
+    "adjustedChatToViewerRatio": 0.0582,
+    "estimationMethod": "Lurker Factor (Factor: 0.25, AdjChatRatio: 0.058)"
   },
   {
-    "timestamp": "2025-04-14T18:37:46.375Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 364,
-    "chatUsers": 39,
-    "estimatedRealViewers": 39,
-    "estimatedBotViewers": 325,
-    "chatToViewerRatio": "0.11"
-  },
-  {
-    "timestamp": "2025-04-14T18:38:46.307Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 368,
-    "chatUsers": 42,
-    "estimatedRealViewers": 42,
-    "estimatedBotViewers": 326,
-    "chatToViewerRatio": "0.11"
-  },
-  {
-    "timestamp": "2025-04-14T18:39:46.462Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 361,
-    "chatUsers": 42,
-    "estimatedRealViewers": 42,
-    "estimatedBotViewers": 319,
-    "chatToViewerRatio": "0.12"
-  },
-  {
-    "timestamp": "2025-04-14T18:40:46.178Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 369,
-    "chatUsers": 42,
-    "estimatedRealViewers": 42,
-    "estimatedBotViewers": 327,
-    "chatToViewerRatio": "0.11"
-  },
-  {
-    "timestamp": "2025-04-14T18:41:45.787Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 366,
-    "chatUsers": 42,
-    "estimatedRealViewers": 42,
-    "estimatedBotViewers": 324,
-    "chatToViewerRatio": "0.11"
-  },
-  {
-    "timestamp": "2025-04-14T18:42:46.359Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 366,
-    "chatUsers": 42,
-    "estimatedRealViewers": 42,
-    "estimatedBotViewers": 324,
-    "chatToViewerRatio": "0.11"
-  },
-  {
-    "timestamp": "2025-04-14T18:43:46.339Z",
-    "channelId": "UCjYKsjt-7EDU78KEcVbhYnQ",
-    "viewers": 353,
-    "chatUsers": 40,
-    "estimatedRealViewers": 40,
-    "estimatedBotViewers": 313,
-    "chatToViewerRatio": "0.11"
+    "timestamp": "2025-05-08T02:43:16.072Z",
+    "channelId": "UCLleZKzwtLupGj6fXySbvuA",
+    "videoId": "iWBfA21fLKw",
+    "concurrentViewers": 376,
+    "uniqueChatterCount": 24,
+    "totalMessagesCollected": 74,
+    "averageMessagesPerChatter": 3.08,
+    "potentiallySuspiciousChatters": 0,
+    "estimatedRealViewers": 96,
+    "estimatedBotViewers": 280,
+    "rawChatToViewerRatio": 0.0638,
+    "adjustedChatToViewerRatio": 0.0638,
+    "estimationMethod": "Lurker Factor (Factor: 0.25, AdjChatRatio: 0.064)"
   }
 ]
