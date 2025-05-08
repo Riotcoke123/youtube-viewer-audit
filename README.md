@@ -1,83 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Viewer Audit - README</title>
+</head>
+<body>
+  <h1>YouTube Viewer Audit</h1>
 
-<h1 align="center">📺 YouTube Viewer Audit</h1>
-<p align="center">
-  <b>Detect suspicious viewers on YouTube live streams</b><br>
-  An anti-viewbot detection tool using viewer/chat activity analysis.
-</p>
+  <p><strong>Author:</strong> <a href="https://github.com/Riotcoke123">Riotcoke123</a></p>
 
-<hr>
+  <p>This Node.js script audits live viewer counts on a specified YouTube livestream to estimate how many viewers are real versus potentially bots, using live chat engagement heuristics.</p>
 
-<h2>🔍 What It Does</h2>
-<ul>
-  <li>Analyzes viewer counts vs. chat participation</li>
-  <li>Estimates real viewers vs. suspected bots</li>
-  <li>Monitors any YouTube channel's live stream</li>
-  <li>Logs results every 60 seconds to a JSON file</li>
-</ul>
+  <h2>🔧 Features</h2>
+  <ul>
+    <li>Fetches concurrent viewer counts via the YouTube Data API v3</li>
+    <li>Collects live chat messages and identifies unique users</li>
+    <li>Estimates real viewers using lurker-adjusted chat ratios</li>
+    <li>Detects potentially suspicious users based on message frequency</li>
+    <li>Logs all analyses to a JSON file for historical tracking</li>
+  </ul>
 
-<h2>🛠 Requirements</h2>
-<ul>
-  <li><a href="https://nodejs.org/">Node.js</a> (v14+ recommended)</li>
-  <li>A <a href="https://console.cloud.google.com/">YouTube Data API key</a></li>
-</ul>
+  <h2>📦 Requirements</h2>
+  <ul>
+    <li>Node.js 16+</li>
+    <li>A valid <strong>YouTube Data API v3</strong> key</li>
+    <li>Internet connection</li>
+  </ul>
 
-<h2>📦 Installation</h2>
+  <h2>📚 Documentation</h2>
+  <p>This project uses the <a href="https://developers.google.com/youtube/v3" target="_blank" rel="noopener noreferrer">YouTube Data API v3</a>. You will need to set up an API key through the Google Developer Console and enable the YouTube Data API for your project.</p>
 
-<pre><code>git clone https://github.com/Riotcoke123/youtube-viewer-audit.git
+  <h2>🚀 Setup</h2>
+  <pre><code>git clone https://github.com/Riotcoke123/youtube-viewer-audit
 cd youtube-viewer-audit
 npm install
+# Replace YOUR_API_KEY in the script with your own
+node audit.js
 </code></pre>
 
-<h2>⚙️ Configuration</h2>
+  <h2>⚙️ Configuration</h2>
+  <p>Edit the top of the script to configure:</p>
+  <ul>
+    <li><code>API_KEY</code>: Your YouTube API key</li>
+    <li><code>CHANNEL_ID</code>: The channel to monitor</li>
+    <li><code>CHAT_COLLECTION_DURATION_SEC</code>: Duration of chat monitoring per cycle</li>
+    <li><code>BOT_ESTIMATION_INTERVAL_MS</code>: How often the script runs analysis</li>
+  </ul>
+  <p><strong>Note:</strong> It's highly recommended to load your API key from an environment variable or a secure config file in production to avoid exposing sensitive credentials.</p>
 
-<ol>
-  <li>Open <code>anti-viewbot.js</code></li>
-  <li>Replace <code>YOUR_YOUTUBE_API_KEY</code> with your actual API key</li>
-  <li>Replace <code>YOUR_CHANNEL_ID</code> with the target YouTube channel's ID</li>
-  <li>Set <code>DATA_LOG_FILE</code> to your desired output path</li>
-</ol>
+  <h2>📈 Output</h2>
+  <p>Logs are written to <code>stream_analysis_log.json</code> and include timestamps, viewer counts, chatter counts, and bot estimation ratios.</p>
 
-<h2>🚀 Usage</h2>
-
-<pre><code>node anti-viewbot.js</code></pre>
-
-<p>This will check for an active live stream every 60 seconds, gather chat data, and log results.</p>
-
-<h2>📄 Sample Log Output</h2>
-
-<pre><code>[
-  {
-    "timestamp": "2025-04-14T18:32:25.875Z",
-    "channelId": "UCxxxxxxx",
-    "viewers": 1200,
-    "chatUsers": 130,
-    "estimatedRealViewers": 130,
-    "estimatedBotViewers": 1070,
-    "chatToViewerRatio": "0.11"
-  }
-]</code></pre>
-
-<h2>🧠 How It Works</h2>
-<ul>
-  <li>Uses YouTube API to detect live streams and retrieve live chat messages</li>
-  <li>Estimates engagement ratio between chatters and viewers</li>
-  <li>Assumes lower ratios may indicate viewbotting</li>
-</ul>
-
-<h2>📌 Notes</h2>
-<ul>
-  <li>This is a statistical estimate, not an official measure by YouTube</li>
-  <li>Some real viewers may not chat, so false positives are possible</li>
-</ul>
-
-<h2>🛡 License</h2>
-<p>
-  This project is licensed under the 
-  <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GNU General Public License v3.0</a>.
-  <br>
-  You are free to use, modify, and redistribute under the same license.
-</p>
-
-<h2>🙌 Contributions</h2>
-<p>Pull requests are welcome! If you have ideas, feel free to open an issue or fork the repo and improve it.</p>
-
+  <h2>🔐 License</h2>
+  <p>This project is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a>.</p>
+  <p>You are free to use, modify, and redistribute under the same license.</p>
+</body>
+</html>
