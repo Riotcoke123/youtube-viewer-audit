@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YouTube Viewer Audit - README</title>
 </head>
 <body>
   <h1>YouTube Viewer Audit</h1>
-
-  <p><strong>Author:</strong> <a href="https://github.com/Riotcoke123">Riotcoke123</a></p>
 
   <p>This Node.js script audits live viewer counts on a specified YouTube livestream to estimate how many viewers are real versus potentially bots, using live chat engagement heuristics.</p>
 
