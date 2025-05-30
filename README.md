@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>YouTube Viewer Audit</title>
 </head>
 <body>
-     <img src="https://github.com/user-attachments/assets/d226105a-a065-407c-93b3-b1372f56edbb" alt="YouTube Anti-Viewbot Detector" width="450" height="250">
+  <img src="https://github.com/user-attachments/assets/d226105a-a065-407c-93b3-b1372f56edbb" alt="YouTube Anti-Viewbot Detector" width="450" height="250">
+
   <h1>YouTube Viewer Audit</h1>
   <p>This Node.js script audits live viewer counts on a specified YouTube livestream to estimate how many viewers are real versus potentially bots, using live chat engagement heuristics.</p>
 
@@ -53,7 +55,7 @@ node audit.js
   <p>Logs are written to <code>stream_analysis_log.json</code> and include timestamps, viewer counts, chatter counts, and bot estimation ratios.</p>
 
   <h2>🔐 License</h2>
-  <p>This project is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU General Public License v3.0</a>.</p>
+  <p>This project is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener noreferrer">GNU General Public License v3.0</a>.</p>
   <p>You are free to use, modify, and redistribute under the same license.</p>
 </body>
 </html>
