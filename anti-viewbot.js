@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const { google } = require('googleapis');
+require('dotenv').config(); // Load .env variables
 
-const API_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-const CHANNEL_ID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+const API_KEY = process.env.API_KEY;
+const CHANNEL_ID = process.env.CHANNEL_ID;
 const DATA_LOG_FILE = path.join(__dirname, 'stream_analysis_log.json');
 
 const CHAT_COLLECTION_DURATION_SEC = 30;
