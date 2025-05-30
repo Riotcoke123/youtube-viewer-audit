@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>YouTube Viewer Audit</title>
 </head>
 <body>
 
@@ -32,22 +33,19 @@
 cd youtube-viewer-audit
 npm install
 
-# Create a .env file in the root directory with the following content:
-API_KEY=your_youtube_api_key
-
-# Replace CHANNEL_ID and other settings in the script or .env as needed
-node audit.js
+# Run the script (API key and channel ID are hardcoded inside bot.js)
+node bot.js
 </code></pre>
 
   <h2>⚙️ Configuration</h2>
-  <p>Edit the top of the script or use a <code>.env</code> file to configure:</p>
+  <p>Configuration is done by editing <code>bot.js</code> directly:</p>
   <ul>
-    <li><code>API_KEY</code>: Your YouTube API key (loaded securely from <code>.env</code>)</li>
+    <li><code>API_KEY</code>: Your YouTube API key</li>
     <li><code>CHANNEL_ID</code>: The channel to monitor</li>
     <li><code>CHAT_COLLECTION_DURATION_SEC</code>: Duration of chat monitoring per cycle</li>
     <li><code>BOT_ESTIMATION_INTERVAL_MS</code>: How often the script runs analysis</li>
   </ul>
-  <p><strong>Note:</strong> It's highly recommended to use a <code>.env</code> file or a secure config system in production to avoid exposing sensitive credentials in your source code.</p>
+  <p><strong>Note:</strong> Avoid committing your real API key to public repositories. Consider using environment variables or secrets management for production environments.</p>
 
   <h2>📈 Output</h2>
   <p>Logs are written to <code>stream_analysis_log.json</code> and include timestamps, viewer counts, chatter counts, and bot estimation ratios.</p>
@@ -55,5 +53,7 @@ node audit.js
   <h2>🔐 License</h2>
   <p>This project is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener noreferrer">GNU General Public License v3.0</a>.</p>
   <p>You are free to use, modify, and redistribute under the same license.</p>
+
 </body>
 </html>
+
