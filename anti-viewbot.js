@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
 const { google } = require('googleapis');
 
-// Hardcoded API key and channel ID
-const API_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-const CHANNEL_ID = 'cccccccccccccccccccccccccccc';
-
+// ========== CONFIG ==========
+const API_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // your API key
+const CHANNEL_ID = 'UCLleZKzwtLupGj6fXySbvuA'; // your channel id
 const DATA_LOG_FILE = path.join(__dirname, 'stream_analysis_log.json');
 
 const CHAT_COLLECTION_DURATION_SEC = 30;
@@ -15,6 +15,7 @@ const LURKER_ADJUSTMENT_FACTOR = 0.25;
 const MIN_CHAT_VIEWER_RATIO_FOR_PRIMARY_ESTIMATION = 0.02;
 const SUSPICIOUSLY_HIGH_MESSAGE_COUNT_PER_USER = 10;
 
+// ========== YOUTUBE SETUP ==========
 let youtube;
 try {
     if (!API_KEY || API_KEY === 'YOUR_API_KEY') {
@@ -26,6 +27,60 @@ try {
 } catch (err) {
     console.error("FATAL: Initialization error:", err.message);
     process.exit(1);
+}
+
+// ========== EXPRESS DASHBOARD ==========
+const app = express();
+const PORT = 3000;
+
+app.use(express.static(__dirname)); // serve static files (for future use)
+
+// API route to get all logs (most recent first)
+app.get('/api/log', (req, res) => {
+    if (fs.existsSync(DATA_LOG_FILE)) {
+        try {
+            const raw = fs.readFileSync(DATA_LOG_FILE, 'utf-8');
+            const data = JSON.parse(raw);
+            return res.json(Array.isArray(data) ? data.reverse() : []);
+        } catch (err) {
+            return res.status(500).json({ error: 'Failed to parse log file.' });
+        }
+    } else {
+        return res.json([]);
+    }
+});
+
+// Serve dashboard HTML page at root
+app.get('/', (req, res) => {
+    res.send(`
+    `);
+});
+
+app.listen(PORT, () => {
+    console.log(`Dashboard running at http://localhost:${PORT}`);
+});
+
+// ========== CORE FUNCTIONS ==========
+// Add a timestamp to each log entry for easier sorting in UI
+async function getChannelDetails(channelId) {
+    try {
+        const res = await youtube.channels.list({
+            part: 'snippet',
+            id: channelId,
+        });
+
+        const channel = res.data.items?.[0];
+        if (!channel) return null;
+
+        return {
+            channelId,
+            channelName: channel.snippet.title,
+            profileImageUrl: channel.snippet.thumbnails.default.url,
+        };
+    } catch (err) {
+        console.error("Error fetching channel details:", err.message);
+        return null;
+    }
 }
 
 async function getLiveStreamId(channelId) {
@@ -165,6 +220,9 @@ function estimateBotsAndRealViewers(concurrentViewers, chatAnalysis) {
 }
 
 function logToFile(data) {
+    // Add a timestamp
+    const timestampedData = { timestamp: Date.now(), ...data };
+
     let log = [];
     if (fs.existsSync(DATA_LOG_FILE)) {
         try {
@@ -176,22 +234,28 @@ function logToFile(data) {
         }
     }
 
-    log.push(data);
+    log.push(timestampedData);
     fs.writeFileSync(DATA_LOG_FILE, JSON.stringify(log, null, 2));
 }
 
 async function runDetectionLoop() {
     console.log("=== YouTube Live Bot Detection ===");
-    console.log(`Monitoring: ${CHANNEL_ID}`);
+
+    const channelDetails = await getChannelDetails(CHANNEL_ID);
+    if (!channelDetails) {
+        console.error("FATAL: Could not retrieve channel details.");
+        return;
+    }
+
+    console.log(`Monitoring: ${channelDetails.channelName} (${CHANNEL_ID})`);
     console.log(`Interval: ${BOT_ESTIMATION_INTERVAL_MS / 1000}s`);
     console.log(`Log file: ${DATA_LOG_FILE}\n`);
 
     const analyze = async () => {
-        const timestamp = new Date().toISOString();
-        console.log(`[${timestamp}] Starting new cycle...`);
+        console.log(`[Cycle] Analyzing ${channelDetails.channelName}...`);
 
         const videoId = await getLiveStreamId(CHANNEL_ID);
-        if (!videoId) return console.log(`[${timestamp}] No active stream.`);
+        if (!videoId) return console.log(`[Cycle] No active stream.`);
 
         const stats = await getStreamStats(videoId);
         if (!stats) return;
@@ -200,8 +264,9 @@ async function runDetectionLoop() {
 
         if (!activeChatId) {
             logToFile({
-                timestamp,
                 channelId: CHANNEL_ID,
+                channelName: channelDetails.channelName,
+                profileImageUrl: channelDetails.profileImageUrl,
                 videoId,
                 concurrentViewers,
                 uniqueChatterCount: 0,
@@ -214,15 +279,16 @@ async function runDetectionLoop() {
                 adjustedChatToViewerRatio: 0,
                 estimationMethod: "No chat available",
             });
-            return console.log(`[${timestamp}] Logged viewer-only stats.`);
+            return console.log(`[Cycle] Logged viewer-only stats.`);
         }
 
         const chat = await getChatAnalysis(activeChatId, CHAT_COLLECTION_DURATION_SEC);
         const est = estimateBotsAndRealViewers(concurrentViewers, chat);
 
         const entry = {
-            timestamp,
             channelId: CHANNEL_ID,
+            channelName: channelDetails.channelName,
+            profileImageUrl: channelDetails.profileImageUrl,
             videoId,
             concurrentViewers,
             ...chat,
@@ -231,13 +297,14 @@ async function runDetectionLoop() {
         };
 
         logToFile(entry);
-        console.log(`[${timestamp}] Done. Real: ${est.estimatedRealViewers}, Bots: ${est.estimatedBotViewers}`);
+        console.log(`[Cycle] Done. Real: ${est.estimatedRealViewers}, Bots: ${est.estimatedBotViewers}`);
     };
 
     await analyze();
     setInterval(analyze, BOT_ESTIMATION_INTERVAL_MS);
 }
 
+// ========== START EVERYTHING ==========
 runDetectionLoop().catch(err => {
     console.error("FATAL: Could not start loop:", err.message);
 });
