@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>YouTube Bot Detection Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>YouTube Bot Detection Dashboard</h1>
+
+  <div id="channelInfo">
+    <img id="channelAvatar" src="" alt="Channel Avatar" />
+    <h2 id="channelName">Channel Name</h2>
+  </div>
+
+  <div id="channelId">Channel ID: --</div>
+
+  <div id="status">Updated: --:--:--</div>
+
+  <table id="logTable">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Real Viewers</th>
+        <th>Bot Viewers</th>
+        <th>Concurrent</th>
+        <th>Chatters</th>
+        <th>Suspicious</th>
+        <th>Avg Msgs</th>
+        <th>Method</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function fetchLog() {
+      try {
+        const res = await fetch('/api/log');
+        const data = await res.json();
+
+        if (!data || data.length === 0) {
+          document.getElementById('status').textContent = 'No data available yet.';
+          return;
+        }
+
+        // Use the latest entry for channel info
+        const latest = data[0];
+        document.getElementById('channelAvatar').src = latest.profileImageUrl || '';
+        document.getElementById('channelName').textContent = latest.channelName || 'Unknown Channel';
+        document.getElementById('channelId').textContent = `Channel ID: ${latest.channelId || '--'}`;
+
+        // Show last 10 logs (or fewer if less data)
+        const recentLogs = data.slice(0, 10);
+
+        const tbody = document.querySelector('#logTable tbody');
+        tbody.innerHTML = recentLogs.map(entry => {
+          const timeStr = new Date(entry.timestamp).toLocaleString();
+          return `
+            <tr>
+              <td>${timeStr}</td>
+              <td>${entry.estimatedRealViewers}</td>
+              <td>${entry.estimatedBotViewers}</td>
+              <td>${entry.concurrentViewers}</td>
+              <td>${entry.uniqueChatterCount}</td>
+              <td>${entry.potentiallySuspiciousChatters}</td>
+              <td>${entry.averageMessagesPerChatter.toFixed(2)}</td>
+              <td>${entry.estimationMethod}</td>
+            </tr>
+          `;
+        }).join('');
+
+        document.getElementById('status').textContent =
+          `Updated: ${new Date().toLocaleTimeString()}`;
+
+      } catch (err) {
+        console.error('Error fetching log:', err);
+        document.getElementById('status').textContent = 'Error fetching data.';
+      }
+    }
+
+    fetchLog();
+    setInterval(fetchLog, 60000); // refresh every 60 seconds
+  </script>
+</body>
+</html>
