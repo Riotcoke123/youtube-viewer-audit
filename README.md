@@ -6,6 +6,10 @@
 
 </head>
 <body>
+
+<img src="https://github.com/user-attachments/assets/9c4a9d06-6c9a-4408-9f1b-e98f25957e62">
+
+  
   <h1>YouTube Viewer Audit</h1>
   <p>Detect suspicious viewers on YouTube live streams</p>
   <p>An anti-viewbot detection tool using viewer/chat activity analysis.</p>
