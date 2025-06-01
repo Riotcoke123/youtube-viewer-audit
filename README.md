@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
 </head>
 <body>
- <img src="https://github.com/user-attachments/assets/b614eaf4-1498-4127-b7a7-16047e06587c"    alt="YouTube Anti-Viewbot Detector" width="550" height="350">
   <h1>YouTube Viewer Audit</h1>
   <p>This Node.js script audits live viewer counts on a specified YouTube livestream to estimate how many viewers are real versus potentially bots, using live chat engagement heuristics.</p>
 
