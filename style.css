@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Open Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1, #status {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #875ea0;  /* Purple header */
+}
+
+tr:nth-child(odd) {
+  background-color: #333333;  /* Dark gray */
+}
+
+tr:nth-child(even) {
+  background-color: #4d4d4d;  /* Medium gray */
+}
+
+#channelInfo {
+  display: flex;
+  align-items: center;      /* vertical centering */
+  justify-content: center;  /* horizontal centering */
+  margin-bottom: 1rem;
+}
+
+#channelInfo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+#channelInfo h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+#channelId {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: monospace;
+}
